@@ -1,9 +1,6 @@
 package com.gerenciadordefuncionarios.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -15,18 +12,23 @@ public class Funcionario implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
+    @OneToOne
+    @JoinColumn(name = "Endereço_id")
+    private EnderecoFuncionario enderecoFuncionario;
+
     private String nome;
     private String cpf;
     private String cargo;
     private String setor;
     private long salario;
 
-    public Funcionario(String nome, String cpf, String cargo, String setor, long salario) {
+    public Funcionario(String nome, String cpf, String cargo, String setor, long salario, EnderecoFuncionario enderecoFuncionario) {
         this.nome = nome;
         this.cpf = cpf;
         this.cargo = cargo;
         this.setor = setor;
         this.salario = salario;
+        this.enderecoFuncionario = enderecoFuncionario;
     }
 
     public Funcionario(){
@@ -88,5 +90,13 @@ public class Funcionario implements Serializable {
 
     public void setSalario(long salario) {
         this.salario = salario;
+    }
+
+    public EnderecoFuncionario getEnderecoFuncionario() {
+        return enderecoFuncionario;
+    }
+
+    public void setEnderecoFuncionario(EnderecoFuncionario enderecoFuncionario) {
+        this.enderecoFuncionario = enderecoFuncionario;
     }
 }
