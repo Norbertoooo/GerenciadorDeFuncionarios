@@ -9,10 +9,13 @@ import java.util.List;
 
 @Service
 public class FuncionarioService {
+
     @Autowired
     public FuncionarioRepository funcionarioRepository;
 
-    public List<Funcionario> listarFuncionarios(){ return funcionarioRepository.findAll();}
+    public List<Funcionario> listarFuncionarios(){
+        return funcionarioRepository.findAll();
+    }
     public Funcionario inserirFuncionario(Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
     }
