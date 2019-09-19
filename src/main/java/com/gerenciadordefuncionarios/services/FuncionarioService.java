@@ -12,7 +12,10 @@ public class FuncionarioService {
     @Autowired
     public FuncionarioRepository funcionarioRepository;
 
-    public List<Funcionario> listarFuncionarios(){ return funcionarioRepository.findAll();}
+    public List<Funcionario> listarFuncionarios(){
+        return funcionarioRepository.findAll();
+    }
+
     public Funcionario inserirFuncionario(Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
     }
@@ -21,10 +24,10 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
-    public Funcionario atualizarFuncionario(Funcionario funcionario){
+    public void atualizarFuncionario(Funcionario funcionario){
         Funcionario novoFuncionario = funcionarioRepository.getOne(funcionario.getId());
         atulizaFuncionario(novoFuncionario, funcionario);
-        return funcionarioRepository.save(novoFuncionario);
+        funcionarioRepository.save(novoFuncionario);
     }
 
     private void atulizaFuncionario(Funcionario novoFuncionario, Funcionario funcionario) {
